@@ -1,0 +1,11 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Face Background (Pink/Beige) -->
+    <circle cx="50" cy="50" r="50" fill="#fce7cf"/>
+    
+    <!-- Eyes (Dark) -->
+    <circle cx="32" cy="35" r="7" fill="rgb(93, 64, 55)"/>
+    <circle cx="68" cy="35" r="7" fill="rgb(93, 64, 55)"/>
+    
+    <!-- Glass/Smile Shape (Dark Negative Space) -->
+    <path d="M18 52 H82 C82 75 62 78 54 88 V100 H46 V88 C38 78 18 75 18 52 Z" fill="rgb(93, 64, 55)"/>
+</svg>

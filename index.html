@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chocopix | Ексклюзивні шоколадні бомбочки</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Montserrat:wght@100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="container top-bar-content">
+                    <nav class="top-nav">
+                        <a href="#">Про нас</a>
+                        <a href="#">Доставка та оплата</a>
+                        <a href="#">Контакти</a>
+                    </nav>
+                    <div class="top-contacts">
+                        <span class="phone-link">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            +38 (099) 000 00 00
+                        </span>
+                        <button class="call-request-btn" onclick="openCallModal()">Замовити дзвінок</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Nav -->
+            <div class="main-header">
+                <div class="container main-header-content">
+                    <div class="logo-area">
+                        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                        <div class="logo" onclick="navigateTo('home')">
+                            <div class="logo-symbol">
+                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Face Background (Pink/Beige) -->
+                                    <circle cx="50" cy="50" r="50" fill="#fce7cf" />
+
+                                    <!-- Eyes (Dark) -->
+                                    <circle cx="32" cy="35" r="7" fill="rgb(93, 64, 55)" />
+                                    <circle cx="68" cy="35" r="7" fill="rgb(93, 64, 55)" />
+
+                                    <!-- Glass/Smile Shape (Dark Negative Space) -->
+                                    <!-- Flat top, U-shaped bottom merging into stem which flares at bottom edge -->
+                                    <path d="M18 52 
+                           H82 
+                           C82 75 62 78 54 88 
+                           V100 
+                           H46 
+                           V88 
+                           C38 78 18 75 18 52 Z" fill="rgb(93, 64, 55)" />
+                                </svg>
+                            </div>
+                            <div class="logo-text-group">
+                                <span class="logo-main">Choco</span>
+                                <span class="logo-accent">Pix</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <nav class="desktop-nav">
+                        <a href="#" class="nav-item active" data-filter="classic">КЛАСИЧНІ</a>
+                        <a href="#" class="nav-item" data-filter="fruit">З НАЧИНКОЮ</a>
+                        <a href="#" class="nav-item" data-filter="nut">ВЕГАНСЬКІ</a>
+                        <a href="#" class="nav-item" data-filter="sets">ПОДАРУНКОВІ</a>
+                        <a href="#" class="nav-item special" data-filter="all">АКЦІЇ %</a>
+                    </nav>
+
+                    <div class="header-actions">
+                        <button class="callback-btn" onclick="openCallModal()">
+                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span>Передзвоніть мені</span>
+                        </button>
+
+                        <div class="social-links">
+                            <a href="#" class="social-link viber"><svg class="icon-lg" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                                </svg></a>
+                            <a href="#" class="social-link insta"><svg class="icon-lg" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                </svg></a>
+                        </div>
+
+                        <button class="user-btn" onclick="openAuthModal()">
+                            <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </button>
+
+                        <div class="cart-container">
+                            <button class="cart-btn" onclick="toggleCart()">
+                                <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                                </svg>
+                                <span id="cart-count" class="cart-count" style="display:none;">0</span>
+                            </button>
+                            <!-- Hover Cart Preview Window -->
+                            <div id="cart-dropdown" class="cart-dropdown">
+                                <div class="cart-dropdown-content">
+                                    <!-- Injected by JS -->
+                                    <p class="empty-msg">Кошик порожній</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="mobile-menu hidden">
+                <nav class="mobile-nav">
+                    <a href="#" class="mobile-nav-item active">КЛАСИЧНІ</a>
+                    <a href="#" class="mobile-nav-item">З НАЧИНКОЮ</a>
+                    <a href="#" class="mobile-nav-item">ВЕГАНСЬКІ</a>
+                    <a href="#" class="mobile-nav-item">ПОДАРУНКОВІ</a>
+                    <a href="#" class="mobile-nav-item special">АКЦІЇ %</a>
+                    <div class="mobile-contacts">
+                        <span>Зв'язок з нами:</span>
+                        <a href="tel:+380990000000" class="mobile-phone">+38 (099) 000 00 00</a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <!-- Home View -->
+            <div id="home-view">
+                <!-- Promo Banner -->
+                <section class="container promo-section">
+                    <div class="promo-banner">
+                        <div class="promo-content">
+                            <div class="promo-badge">
+                                <span class="truck-icon">🚚</span> БОНУС ВІД CHOCOPIX
+                            </div>
+                            <h1 class="promo-title">Безкоштовна доставка <br> <span class="highlight">від 2000
+                                    грн</span>
+                            </h1>
+                            <p class="promo-desc">
+                                Замовляйте улюблені шоколадні бомбочки на суму від 2000 грн і ми доставимо їх до ваших
+                                дверей абсолютно безкоштовно!
+                            </p>
+                            <div class="promo-actions">
+                                <button class="promo-btn" onclick="scrollToProducts()">Перейти до каталогу</button>
+                                <span class="promo-note">
+                                    <span class="clock-icon">🕒</span> Акція діє постійно
+                                </span>
+                            </div>
+                        </div>
+                        <div class="promo-image-container">
+                            <div class="image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1624353365286-3f8d62daad51?auto=format&fit=crop&q=80&w=600"
+                                    alt="Шоколадні бомбочки" class="promo-img">
+                                <div class="delivery-badge">
+                                    <span class="badge-amount">0 грн</span> Доставка
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Categories Module -->
+                <section class="container categories-section">
+                    <!-- <div class="categories-header">
+                        <h2 class="section-title">НАШІ КАТЕГОРІЇ</h2>
+                        <a href="#" class="view-all-link">ДИВИТИСЬ ВСІ</a>
+                    </div> -->
+                    <div class="categories-grid">
+                        <!-- Card 1 -->
+                        <div class="category-card" onclick="filterProducts('classic')">
+                            <div class="cat-card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=400"
+                                    alt="Шоколадні Бомбочки" class="cat-card-img">
+                            </div>
+                            <div class="cat-card-content">
+                                <h3 class="cat-card-title">ШОКОЛАДНІ<br>БОМБОЧКИ</h3>
+                                <span class="cat-card-link">В МАГАЗИН ></span>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="category-card" onclick="filterProducts('sets')">
+                            <div class="cat-card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=400"
+                                    alt="Подарункові Набори" class="cat-card-img">
+                            </div>
+                            <div class="cat-card-content">
+                                <h3 class="cat-card-title">ПОДАРУНКОВІ<br>НАБОРИ</h3>
+                                <span class="cat-card-link">В МАГАЗИН ></span>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="category-card" onclick="filterProducts('classic')">
+                            <div class="cat-card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=400"
+                                    alt="Какао та Кава" class="cat-card-img">
+                            </div>
+                            <div class="cat-card-content">
+                                <h3 class="cat-card-title">КАКАО ТА КАВА</h3>
+                                <span class="cat-card-link">В МАГАЗИН ></span>
+                            </div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="category-card" onclick="filterProducts('nut')">
+                            <div class="cat-card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=400"
+                                    alt="Для Бізнесу" class="cat-card-img">
+                            </div>
+                            <div class="cat-card-content">
+                                <h3 class="cat-card-title">ДЛЯ БІЗНЕСУ НАХУЙ</h3>
+                                <span class="cat-card-link">В МАГАЗИН ></span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Products Section -->
+                <section class="container products-section">
+                    <div class="products-header">
+                        <h2>Наші Продукти</h2>
+                        <button class="view-all">Дивитись всі ➞</button>
+                    </div>
+
+                    <div id="products-grid" class="products-grid">
+                        <!-- Item 1 -->
+                        <div onclick="openProductDetails('1')" class="product-card">
+                            <div class="card-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?auto=format&fit=crop&q=80&w=400"
+                                    alt="Класичний Молочний Шоколад" class="card-image">
+                                <div class="card-badges">
+                                    <span class="badge hit">ХІТ ПРОДАЖУ</span>
+                                    <span class="badge super">СУПЕРЦІНА</span>
+                                </div>
+                            </div>
+                            <div class="card-category">КЛАСИКА</div>
+                            <h3 class="card-title">Класичний Молочний Шоколад</h3>
+                            <div class="card-bottom">
+                                <div class="price-box">
+                                    <span class="old-price">180 ₴</span>
+                                    <span class="price">145 ₴</span>
+                                </div>
+                                <button onclick="addToCart(event, '1')" class="add-btn">
+                                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                                        </path>
+                                    </svg>
+                                    Додати в кошик
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Item 2 -->
+                        <div onclick="openProductDetails('2')" class="product-card">
+                            <div class="card-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&q=80&w=400"
+                                    alt="Темний Бельгійський з Какао" class="card-image">
+                                <div class="card-badges">
+                                    <span class="badge hit">ХІТ ПРОДАЖУ</span>
+                                </div>
+                            </div>
+                            <div class="card-category">КЛАСИКА</div>
+                            <h3 class="card-title">Темний Бельгійський з Какао</h3>
+                            <div class="card-bottom">
+                                <div class="price-box">
+                                    <span class="price">160 ₴</span>
+                                </div>
+                                <button onclick="addToCart(event, '2')" class="add-btn">
+                                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                                        </path>
+                                    </svg>
+                                    Додати в кошик
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Item 3 -->
+                        <div onclick="openProductDetails('3')" class="product-card">
+                            <div class="card-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1623156346149-d5bc8bd2723a?auto=format&fit=crop&q=80&w=400"
+                                    alt="Солона Карамель та Фундук" class="card-image">
+                                <div class="card-badges">
+                                    <span class="badge hit">ХІТ ПРОДАЖУ</span>
+                                    <span class="badge super">СУПЕРЦІНА</span>
+                                </div>
+                            </div>
+                            <div class="card-category">ГОРІХОВІ</div>
+                            <h3 class="card-title">Солона Карамель та Фундук</h3>
+                            <div class="card-bottom">
+                                <div class="price-box">
+                                    <span class="old-price">210 ₴</span>
+                                    <span class="price">185 ₴</span>
+                                </div>
+                                <button onclick="addToCart(event, '3')" class="add-btn">
+                                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                                        </path>
+                                    </svg>
+                                    Додати в кошик
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Item 4 -->
+                        <div onclick="openProductDetails('4')" class="product-card">
+                            <div class="card-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1549007994-cb92cfd38457?auto=format&fit=crop&q=80&w=400"
+                                    alt="Полуничний Мус" class="card-image">
+                                <div class="card-badges">
+                                </div>
+                            </div>
+                            <div class="card-category">ФРУКТОВІ</div>
+                            <h3 class="card-title">Полуничний Мус</h3>
+                            <div class="card-bottom">
+                                <div class="price-box">
+                                    <span class="price">155 ₴</span>
+                                </div>
+                                <button onclick="addToCart(event, '4')" class="add-btn">
+                                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                                        </path>
+                                    </svg>
+                                    Додати в кошик
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Item 5 -->
+                        <div onclick="openProductDetails('5')" class="product-card">
+                            <div class="card-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1582176604447-aa5144675a69?auto=format&fit=crop&q=80&w=400"
+                                    alt="Молочний з Кокосом" class="card-image">
+                                <div class="card-badges">
+                                </div>
+                            </div>
+                            <div class="card-category">КЛАСИКА</div>
+                            <h3 class="card-title">Молочний з Кокосом</h3>
+                            <div class="card-bottom">
+                                <div class="price-box">
+                                    <span class="price">165 ₴</span>
+                                </div>
+                                <button onclick="addToCart(event, '5')" class="add-btn">
+                                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                                        </path>
+                                    </svg>
+                                    Додати в кошик
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Checkout View (Hidden by default) -->
+            <div id="checkout-view" class="checkout-view hidden">
+                <div class="container" style="padding: 2rem 1rem;">
+                    <button onclick="navigateTo('home')" class="back-link" style="margin-bottom: 2rem;">← Повернутись до
+                        магазину</button>
+                    <h1 style="margin-bottom: 2rem;">Оформлення замовлення</h1>
+
+                    <div class="checkout-layout" style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+                        <!-- Simple checkout simulation for pure CSS/JS -->
+                        <div class="checkout-form-box"
+                            style="background: white; padding: 2rem; border-radius: 1rem; border: 1px solid #eee;">
+                            <h2 style="margin-bottom: 1rem;">Контактні дані</h2>
+                            <input type="text" placeholder="Ваше ім'я"
+                                style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 0.5rem;">
+                            <input type="tel" placeholder="Телефон"
+                                style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 0.5rem;">
+                            <button onclick="alert('Замовлення успішне!')"
+                                style="width: 100%; background: var(--secondary-brown); color: white; padding: 1rem; font-weight: bold; border-radius: 0.5rem;">Підтвердити
+                                замовлення</button>
+                        </div>
+
+                        <div class="bg-white rounded-2xl p-6 border border-gray-100">
+                            <h3>Ваше замовлення</h3>
+                            <div id="checkout-cart-items" style="margin: 1rem 0;"></div>
+                            <div class="flex justify-between font-bold text-xl">
+                                <span>Разом:</span>
+                                <span id="checkout-total">0 ₴</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Details View -->
+            <div id="details-view" class="details-view hidden">
+                <div class="container">
+                    <!-- Breadcrumbs -->
+                    <div class="product-breadcrumbs">
+                        <button onclick="navigateTo('home')" class="back-link">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                            Повернутись до каталогу
+                        </button>
+                    </div>
+
+                    <!-- Hero Section -->
+                    <div class="product-hero">
+                        <!-- Gallery -->
+                        <div class="product-gallery">
+                            <div class="main-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&q=80&w=600"
+                                    alt="Темний Бельгійський з Какао" class="main-image">
+                            </div>
+                            <div class="gallery-thumbs">
+                                <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&q=80&w=100"
+                                    class="thumb active">
+                                <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?auto=format&fit=crop&q=80&w=100"
+                                    class="thumb">
+                                <img src="https://images.unsplash.com/photo-1623156346149-d5bc8bd2723a?auto=format&fit=crop&q=80&w=100"
+                                    class="thumb">
+                            </div>
+                        </div>
+
+                        <!-- Product Info -->
+                        <div class="product-info">
+                            <div class="product-category-label">КЛАСИКА</div>
+                            <h1 class="product-details-title">Темний Бельгійський з Какао</h1>
+                            <div class="product-price-row">
+                                <span class="product-price-large">160 ₴</span>
+                                <span class="unit-label">за одиницю</span>
+                            </div>
+
+                            <div class="product-quote">
+                                "70% какао для справжніх поціновувачів насиченого смаку темного шоколаду."
+                            </div>
+
+
+
+                            <!-- Specs -->
+                            <div class="product-specs">
+                                <div class="spec-item">
+                                    <span class="spec-icon">⚖️</span>
+                                    <div class="spec-text">
+                                        <span class="spec-label">ВАГА</span>
+                                        <span class="spec-value">45г</span>
+                                    </div>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-icon">🍫</span>
+                                    <div class="spec-text">
+                                        <span class="spec-label">КАКАО</span>
+                                        <span class="spec-value">70%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="product-actions-row">
+                                <div class="quantity-control">
+                                    <div class="qty-label">КІЛЬКІСТЬ</div>
+                                    <div class="qty-selector">
+                                        <button class="qty-btn-action" onclick="updateDetailQty(-1)">-</button>
+                                        <input type="text" value="1" readonly class="qty-input" id="detail-qty-input">
+                                        <button class="qty-btn-action" onclick="updateDetailQty(1)">+</button>
+                                    </div>
+                                </div>
+                                <div class="total-display">
+                                    <div class="total-label">РАЗОМ</div>
+                                    <div class="total-value" id="detail-total-price">160 ₴</div>
+                                </div>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="product-buttons">
+                                <button
+                                    onclick="addToCart(event, '2', parseInt(document.getElementById('detail-qty-input').value) || 1)"
+                                    class="add-to-cart-lg">
+                                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                    </svg>
+                                    Додати в кошик
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabs Section -->
+                    <div class="product-tabs-section">
+                        <div class="tabs-nav">
+                            <button class="tab-btn active" onclick="switchTab(event, 'tab-description')">Детальний
+                                опис</button>
+                            <button class="tab-btn" onclick="switchTab(event, 'tab-ingredients')">Склад та
+                                калорійність</button>
+                            <button class="tab-btn" onclick="switchTab(event, 'tab-reviews')">Відгуки (12)</button>
+                        </div>
+                        <div class="tab-content-wrapper">
+                            <!-- Description Tab -->
+                            <div id="tab-description" class="tab-content-item">
+                                <p style="margin-bottom: 2rem;">
+                                    Наша флагманська шоколадна бомбочка створена з автентичного бельгійського шоколаду.
+                                    Всередині на
+                                    вас чекає преміальне какао та ніжні міні-маршмеллоу, які феєрично з'являються на
+                                    поверхні,
+                                    коли ви
+                                    заливаєте сферу гарячим молоком.
+                                </p>
+                                <h3>Як приготувати справжню магію:</h3>
+                                <ol class="instructions-list">
+                                    <li>Покладіть шоколадну бомбочку у улюблену велику чашку.</li>
+                                    <li>Підігрійте 200-250 мл молока до температури 80-90°C.</li>
+                                    <li>Повільно заливайте молоком шоколадну сферу.</li>
+                                    <li>Спостерігайте, як шоколад тане, а маршмеллоу виринають на поверхню.</li>
+                                    <li>Ретельно перемішайте та насолоджуйтесь!</li>
+                                </ol>
+                            </div>
+
+                            <!-- Ingredients Tab -->
+                            <div id="tab-ingredients" class="tab-content-item hidden">
+                                <h3>Склад:</h3>
+                                <p style="margin-bottom: 2rem; color: #666; line-height: 1.6;">
+                                    Бельгійський молочний шоколад (цукор, какао-масло, сухе незбиране молоко, какао
+                                    терте, емульгатор: соєвий лецитин, натуральний ароматизатор ваніль), какао-порошок
+                                    зі зниженим вмістом жиру, маршмеллоу (глюкозно-фруктозний сироп, цукор, вода,
+                                    желатин, декстроза, кукурудзяний крохмаль, ароматизатор натуральний ваніль).
+                                </p>
+                                <h3>Харчова цінність (на 100г):</h3>
+                                <ul style="list-style: none; padding: 0; color: #666;">
+                                    <li style="margin-bottom: 0.5rem;"><strong>Енергетична цінність:</strong> 2150 кДж /
+                                        514 ккал</li>
+                                    <li style="margin-bottom: 0.5rem;"><strong>Жири:</strong> 28.5 г (з них насичені:
+                                        17.1 г)</li>
+                                    <li style="margin-bottom: 0.5rem;"><strong>Вуглеводи:</strong> 58.2 г (з них цукри:
+                                        54.4 г)</li>
+                                    <li style="margin-bottom: 0.5rem;"><strong>Білки:</strong> 6.1 г</li>
+                                    <li><strong>Сіль:</strong> 0.15 г</li>
+                                </ul>
+                            </div>
+
+                            <!-- Reviews Tab -->
+                            <div id="tab-reviews" class="tab-content-item hidden">
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+                                    <div style="font-size: 3rem; font-weight: bold; color: var(--primary);">4.9</div>
+                                    <div>
+                                        <div style="color: #FFC107;">★★★★★</div>
+                                        <div style="color: #888; font-size: 0.9rem;">на основі 12 відгуків</div>
+                                    </div>
+                                    <button class="add-btn" style="margin-left: auto; padding: 0.8rem 1.5rem;">Написати
+                                        відгук</button>
+                                </div>
+
+                                <div class="review-item"
+                                    style="border-bottom: 1px solid #eee; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <strong>Олена М.</strong>
+                                        <span style="color: #888; font-size: 0.9rem;">03.02.2024</span>
+                                    </div>
+                                    <div style="color: #FFC107; margin-bottom: 0.5rem;">★★★★★</div>
+                                    <p style="color: #444;">Це просто магія! діти були в захваті, коли маршмеллоу почали
+                                        виринати. Дуже смачний шоколад!</p>
+                                </div>
+
+                                <div class="review-item"
+                                    style="border-bottom: 1px solid #eee; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <strong>Андрій К.</strong>
+                                        <span style="color: #888; font-size: 0.9rem;">01.02.2024</span>
+                                    </div>
+                                    <div style="color: #FFC107; margin-bottom: 0.5rem;">★★★★★</div>
+                                    <p style="color: #444;">Брав дівчині на подарунок. Виглядає дуже презентабельно,
+                                        смак насичений. Рекомендую.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Related Products -->
+                    <section class="related-products" style="margin-bottom: 4rem;">
+                        <h2 class="section-title center">Може вас також зацікавити</h2>
+                        <div class="products-grid">
+                            <!-- Card 1 (Reused) -->
+                            <div onclick="openProductDetails('1')" class="product-card">
+                                <div class="card-image-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?auto=format&fit=crop&q=80&w=400"
+                                        alt="Класичний Молочний Шоколад" class="card-image">
+                                    <div class="card-badges">
+                                        <span class="badge hit">ХІТ ПРОДАЖУ</span>
+                                    </div>
+                                </div>
+                                <div class="card-category">КЛАСИКА</div>
+                                <h3 class="card-title">Класичний Молочний Шоколад</h3>
+                                <div class="card-bottom">
+                                    <div class="price-box">
+                                        <span class="old-price">180 ₴</span>
+                                        <span class="price">145 ₴</span>
+                                    </div>
+                                    <button class="add-btn">Додати в кошик</button>
+                                </div>
+                            </div>
+                            <!-- Card 2 (Reused) -->
+                            <div onclick="openProductDetails('3')" class="product-card">
+                                <div class="card-image-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1623156346149-d5bc8bd2723a?auto=format&fit=crop&q=80&w=400"
+                                        alt="Солона Карамель" class="card-image">
+                                    <div class="card-badges">
+                                        <span class="badge super">СУПЕРЦІНА</span>
+                                    </div>
+                                </div>
+                                <div class="card-category">ГОРІХОВІ</div>
+                                <h3 class="card-title">Солона Карамель та Фундук</h3>
+                                <div class="card-bottom">
+                                    <div class="price-box">
+                                        <span class="price">185 ₴</span>
+                                    </div>
+                                    <button class="add-btn">Додати в кошик</button>
+                                </div>
+                            </div>
+                            <!-- Card 3 (Reused) -->
+                            <div onclick="openProductDetails('4')" class="product-card">
+                                <div class="card-image-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1549007994-cb92cfd38457?auto=format&fit=crop&q=80&w=400"
+                                        alt="Полуничний Мус" class="card-image">
+                                </div>
+                                <div class="card-category">ФРУКТОВІ</div>
+                                <h3 class="card-title">Полуничний Мус</h3>
+                                <div class="card-bottom">
+                                    <div class="price-box">
+                                        <span class="price">155 ₴</span>
+                                    </div>
+                                    <button class="add-btn">Додати в кошик</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container footer-content">
+                <div class="footer-col brand-col">
+                    <div class="logo white">
+                        <div class="logo-symbol">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Face Background (Pink/Beige) -->
+                                <circle cx="50" cy="50" r="50" fill="#fce7cf" />
+                                <!-- Eyes (Dark) -->
+                                <circle cx="32" cy="35" r="7" fill="rgb(93, 64, 55)" />
+                                <circle cx="68" cy="35" r="7" fill="rgb(93, 64, 55)" />
+                                <!-- Glass/Smile Shape (Dark Negative Space) -->
+                                <path d="M18 52 H82 C82 75 62 78 54 88 V100 H46 V88 C38 78 18 75 18 52 Z"
+                                    fill="rgb(93, 64, 55)" />
+                            </svg>
+                        </div>
+                        <div class="logo-text-group">
+                            <span class="logo-main" style="color: white;">Choco</span>
+                            <span class="logo-accent" style="color: var(--badge-gold);">Pix</span>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem;">Створюємо магію в кожній чашці. Ручна робота та найкращий бельгійський
+                        шоколад.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Популярні категорії</h4>
+                    <ul>
+                        <li><a href="#">Класичний молочний</a></li>
+                        <li><a href="#">Зі смаком ягід</a></li>
+                        <li><a href="#">Горіхові мікси</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакти</h4>
+                    <ul>
+                        <li>м. Київ, вул. Шоколадна 15</li>
+                        <li>+38 (099) 199 00 00</li>
+                        <li>order@chocobomb.ua</li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Cart Sidebar -->
+        <div id="cart-sidebar" class="cart-sidebar hidden">
+            <div class="cart-header">
+                <h3>Мій кошик</h3>
+                <button class="close-cart" onclick="toggleCart()">✕</button>
+            </div>
+            <div id="cart-items" class="cart-items">
+                <!-- Items injected by JS -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>РАЗОМ:</span>
+                    <span id="cart-total-price">0 ₴</span>
+                </div>
+                <button onclick="navigateTo('checkout'); toggleCart()" class="checkout-btn">Перейти до
+                    оформлення</button>
+            </div>
+        </div>
+        <div id="cart-overlay" class="overlay hidden" onclick="toggleCart()"></div>
+
+        <!-- Call Modal -->
+        <div id="call-modal" class="modal hidden">
+            <div class="modal-content call-modal-content">
+                <button class="close-modal" onclick="closeModals()">✕</button>
+
+                <div class="modal-header-icon">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                </div>
+
+                <h2>ЗАМОВИТИ ДЗВІНОК</h2>
+                <p class="modal-subtitle">Залиште ваші контакти і ми зв'яжемося з вами найближчим часом</p>
+
+                <form onsubmit="handleCallSubmit(event)" class="call-form">
+                    <div class="input-group">
+                        <svg class="input-icon" width="20" height="20" fill="none" stroke="currentColor"
+                            stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                        <input type="text" placeholder="Ваше ім'я" required class="modal-input">
+                    </div>
+
+                    <div class="input-group">
+                        <svg class="input-icon" width="20" height="20" fill="none" stroke="currentColor"
+                            stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        <input type="tel" placeholder="+38 (0__) ___ __ __" required class="modal-input">
+                    </div>
+
+                    <div class="input-group">
+                        <textarea placeholder="Коментар або запитання" class="modal-input modal-textarea"
+                            rows="3"></textarea>
+                        <svg class="input-icon" width="20" height="20" fill="none" stroke="currentColor"
+                            stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                    </div>
+
+                    <button type="submit" class="modal-submit-btn">Передзвоніть мені</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Auth Modal -->
+        <div id="auth-modal" class="modal hidden">
+            <div class="modal-content auth-modal-content">
+                <button class="close-modal" onclick="closeModals()">✕</button>
+
+                <div class="auth-tabs">
+                    <button class="auth-tab" onclick="switchAuthTab('login')">Вхід</button>
+                    <button class="auth-tab active" onclick="switchAuthTab('register')">Реєстрація</button>
+                </div>
+
+                <!-- Register Form -->
+                <div id="register-form" class="auth-form-container">
+                    <h2 class="auth-title">Створити акаунт</h2>
+                    <p class="auth-subtitle">Приєднуйтесь до клубу ChocoPix та отримуйте знижки</p>
+
+                    <form onsubmit="handleAuthSubmit(event, 'register')" class="call-form">
+                        <div class="input-group">
+                            <svg class="input-icon" width="20" height="20" fill="none" stroke="currentColor"
+                                stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                            <input type="text" placeholder="Ваше ім'я" required class="modal-input">
+                        </div>
+
+                        <div class="input-group">
+                            <svg class="input-icon" width="20" height="20" fill="none" stroke="currentColor"
+                                stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <input type="email" placeholder="Електронна пошта" required class="modal-input">
+                        </div>
+
+                        <div class="input-group">
+                            <svg class="input-icon" width="20" height="20" fill="none" stroke="currentColor"
+                                stroke-width="2" viewBox="0 0 24 24">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0110 0v4" />
+                            </svg>
+                            <input type="password" placeholder="Пароль" required class="modal-input">
+                        </div>
+
+                        <button type="submit" class="modal-submit-btn arrow-btn">
+                            Зареєструватися
+                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Login Form (Hidden by default) -->
+                <div id="login-form" class="auth-form-container hidden">
+                    <h2 class="auth-title">З поверненням!</h2>
+                    <p class="auth-subtitle">Увійдіть щоб продовжити покупки</p>
+
+                    <form onsubmit="handleAuthSubmit(event, 'login')" class="call-form">
+                        <div class="input-group">
+                            <svg class="input-icon" width="20" height="20" fill="none" stroke="currentColor"
+                                stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <input type="email" placeholder="Електронна пошта" required class="modal-input">
+                        </div>
+
+                        <div class="input-group">
+                            <svg class="input-icon" width="20" height="20" fill="none" stroke="currentColor"
+                                stroke-width="2" viewBox="0 0 24 24">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0110 0v4" />
+                            </svg>
+                            <input type="password" placeholder="Пароль" required class="modal-input">
+                        </div>
+
+                        <button type="submit" class="modal-submit-btn arrow-btn">
+                            Увійти
+                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </button>
+                        <a href="#" class="forgot-password-link">Забули пароль?</a>
+                    </form>
+                </div>
+
+                <div class="auth-divider">
+                    <span>АБО ЧЕРЕЗ СОЦІАЛЬНІ МЕРЕЖІ</span>
+                </div>
+
+                <div class="social-login-buttons">
+                    <button class="social-login-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z" />
+                        </svg>
+                        Google
+                    </button>
+                    <button class="social-login-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.15 5.96C15.21 5.96 16.12 6.04 16.12 6.04V8.51H15.01C13.77 8.51 13.38 9.28 13.38 10.07V12.06H16.15L15.71 14.96H13.38V21.96C18.16 21.21 21.82 17.06 21.82 12.06C21.82 6.53 17.32 2.04 12 2.04Z" />
+                        </svg>
+                        Facebook
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Success Modal -->
+        <div id="success-modal" class="modal hidden">
+            <div class="modal-content" style="text-align: center; max-width: 400px;">
+                <button class="close-modal" onclick="closeModals()">✕</button>
+                <div class="modal-header-icon" style="background: #b2530d; color: white;">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        style="width: 60%; height: 60%;">
+                        <!-- Face Background (White for contrast against dark green) -->
+                        <circle cx="50" cy="50" r="50" fill="white" />
+                        <!-- Eyes (Dark Green to match background or Dark Brown) - Let's use Dark Brown for brand consistency -->
+                        <circle cx="32" cy="35" r="7" fill="rgb(93, 64, 55)" />
+                        <circle cx="68" cy="35" r="7" fill="rgb(93, 64, 55)" />
+                        <!-- Glass/Smile -->
+                        <path d="M18 52 H82 C82 75 62 78 54 88 V100 H46 V88 C38 78 18 75 18 52 Z"
+                            fill="rgb(93, 64, 55)" />
+                    </svg>
+                </div>
+                <h2>ДЯКУЄМО!</h2>
+                <p class="modal-subtitle" style="margin-bottom: 2rem;">Ми отримали вашу заявку і зателефонуємо вам
+                    найближчим
+                    часом.</p>
+                <button onclick="closeModals()" class="modal-submit-btn" style="background: #b2530d;">Чудово</button>
+            </div>
+        </div>
+        <div id="modal-overlay" class="overlay hidden" onclick="closeModals()"></div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
