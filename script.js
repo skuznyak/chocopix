@@ -455,7 +455,7 @@ function updateCartUI() {
                     <span class="preview-total-label">Разом:</span>
                     <span class="preview-total-amount">${totalPrice} ₴</span>
                 </div>
-                <button onclick="navigateTo('checkout'); toggleCart()" class="preview-btn">Оформити замовлення</button>
+                <button onclick="navigateTo('checkout'); toggleCart()" class="preview-btn">Перейти до оформлення</button>
             `;
         }
     }
@@ -525,7 +525,85 @@ window.handleAuthSubmit = function (e, type) {
     showNotification(msg);
 }
 
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', () => {
+    init();
+    initPhoneMask();
+});
+
+function initPhoneMask() {
+    const inputs = document.querySelectorAll('.phone-mask');
+
+    inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            if (input.value === '') {
+                input.value = '+38 (0';
+            }
+        });
+
+        input.addEventListener('blur', () => {
+            if (input.value === '+38 (0') {
+                input.value = '';
+            }
+        });
+
+        input.addEventListener('input', (e) => {
+            const value = input.value;
+            let digits = value.replace(/\D/g, '');
+
+            if (digits.startsWith('380')) {
+                // Good
+            } else if (digits.startsWith('38')) {
+                if (digits.length > 2 && digits[2] !== '0') {
+                    // typed 38X...
+                }
+            } else if (digits.startsWith('0')) {
+                digits = '38' + digits;
+            } else {
+                digits = '380' + digits;
+            }
+
+            if (digits.length > 12) digits = digits.slice(0, 12);
+
+            let formatted = '';
+            if (digits.length > 0) formatted += '+' + digits.substring(0, 2);
+            if (digits.length >= 3) {
+                formatted += ' (' + digits.substring(2, 3);
+                if (digits.length > 3) formatted += digits.substring(3, 5);
+            }
+            // Strict > 5 ensures we don't add ')' until 6th digit starts
+            if (digits.length > 5) {
+                formatted += ') ' + digits.substring(5, 8);
+            }
+            // Strict > 8 ensures we don't add ' ' until 9th digit starts
+            if (digits.length > 8) {
+                formatted += ' ' + digits.substring(8, 10);
+            }
+            // Strict > 10
+            if (digits.length > 10) {
+                formatted += ' ' + digits.substring(10, 12);
+            }
+
+            input.value = formatted;
+        });
+
+        input.addEventListener('keydown', (e) => {
+            const key = e.keyCode || e.charCode;
+            // Allow: backspace, delete, tab, escape, enter
+            if (key == 8 || key == 46 || key == 9 || key == 27 || key == 13 ||
+                // Allow: Ctrl+A,C,V,X,Z
+                ((e.ctrlKey === true || e.metaKey === true) &&
+                    (key === 65 || key === 67 || key === 86 || key === 88 || key === 90)) ||
+                // Allow: home, end, left, right
+                (key >= 35 && key <= 39)) {
+                return;
+            }
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (key < 48 || key > 57)) && (key < 96 || key > 105)) {
+                e.preventDefault();
+            }
+        });
+    });
+}
 
 /* --- Checkout Redesign Logic --- */
 window.toggleDeliveryInputs = function (method) {

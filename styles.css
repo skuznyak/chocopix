@@ -521,11 +521,13 @@ button {
     font-weight: 800;
     font-size: 1rem;
     margin-top: 1.5rem;
-    transition: background 0.2s;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.2s;
 }
 
 .preview-btn:hover {
     background: #3d1a0a;
+    transform: scale(1.01) translateY(-1px);
+    box-shadow: 0 5px 15px rgba(61, 26, 10, 0.3);
 }
 
 /* Mobile Menu */
@@ -1033,6 +1035,13 @@ button {
     padding: 1rem;
     border-radius: 1rem;
     font-weight: 700;
+    transition: all 0.2s;
+}
+
+.checkout-btn:hover {
+    background: #3d1a0a;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(93, 45, 20, 0.15);
 }
 
 .modal {
@@ -2721,8 +2730,8 @@ button {
 }
 
 .summary-row.total {
-    font-size: 1.5rem;
-    font-weight: 900;
+    font-size: 1.3rem;
+    font-weight: 700;
     color: var(--dark-brown);
     margin-top: 0.5rem;
     align-items: center;
@@ -2743,12 +2752,14 @@ button {
     font-size: 1rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    transition: background 0.2s, transform 0.1s;
     margin-bottom: 1.5rem;
+    transition: all 0.2s;
 }
 
 .submit-order-btn:hover {
     background: #3d1a0a;
+    transform: scale(1.01) translateY(-1px);
+    box-shadow: 0 5px 15px rgba(61, 26, 10, 0.3);
 }
 
 .submit-order-btn:active {
@@ -2851,7 +2862,7 @@ button {
 
 .fd-bold {
     font-size: 18px;
-    font-weight: 800;
+    font-weight: 600;
     color: var(--dark-brown);
 }
 
@@ -2909,14 +2920,4 @@ button {
 .sidebar-qty-btn:hover {
     border-color: var(--primary);
     color: var(--primary);
-}
-
-/* Proceed to Checkout Button Animation */
-.preview-btn {
-    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.2s;
-}
-
-.preview-btn:hover {
-    transform: scale(1.03) translateY(-2px);
-    box-shadow: 0 5px 15px rgba(192, 124, 92, 0.3);
 }
