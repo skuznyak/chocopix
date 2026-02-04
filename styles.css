@@ -417,11 +417,13 @@ button {
     z-index: 110;
 }
 
+/* 
 .cart-container:hover .cart-dropdown {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-}
+} 
+*/
 
 .cart-dropdown-header {
     display: flex;
@@ -2365,6 +2367,7 @@ button {
         font-size: 0.9rem;
     }
 }
+
 /* --- Checkout Redesign Styles --- */
 .checkout-view {
     padding-bottom: 5rem;
@@ -2393,7 +2396,7 @@ button {
 
 .checkout-grid {
     display: grid;
-    grid-template-columns: 1.8fr 1fr;
+    grid-template-columns: 1.6fr 1fr;
     gap: 3rem;
     align-items: start;
 }
@@ -2438,7 +2441,8 @@ button {
 }
 
 .step-content {
-    padding-left: 3.5rem; /* align with title */
+    padding-left: 3.5rem;
+    /* align with title */
 }
 
 /* Forms */
@@ -2595,7 +2599,7 @@ button {
     justify-content: center;
 }
 
-.payment-method-row input:checked + .radio-custom {
+.payment-method-row input:checked+.radio-custom {
     border-color: var(--primary);
 }
 
@@ -2610,7 +2614,7 @@ button {
     transition: all 0.2s;
 }
 
-.payment-method-row input:checked + .radio-custom::after {
+.payment-method-row input:checked+.radio-custom::after {
     opacity: 1;
     transform: scale(1);
 }
@@ -2765,11 +2769,12 @@ button {
     .checkout-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .checkout-summary-col {
         position: static;
-        order: -1; /* Show summary first on mobile? Or last? Usually last, but let's keep standard flow or make it collapsable. Let's keep data flow: input -> summary. So order 1 (default) */
-        order: 1; 
+        order: -1;
+        /* Show summary first on mobile? Or last? Usually last, but let's keep standard flow or make it collapsable. Let's keep data flow: input -> summary. So order 1 (default) */
+        order: 1;
     }
 }
 
@@ -2778,12 +2783,12 @@ button {
         padding-left: 0;
         margin-top: 1rem;
     }
-    
+
     .form-row {
         grid-template-columns: 1fr;
         gap: 0;
     }
-    
+
     .delivery-methods {
         grid-template-columns: 1fr;
     }
@@ -2794,4 +2799,124 @@ button {
         gap: 1rem;
         text-align: left;
     }
+}
+
+/* --- Free Delivery Widget --- */
+.free-delivery-widget {
+    background: #fcfcfc;
+    border: 1px solid #f3f4f6;
+    border-radius: 1rem;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.fd-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--dark-brown);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.fd-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.fd-bar-container {
+    width: 100%;
+    height: 0.75rem;
+    background: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+}
+
+.fd-progress {
+    height: 100%;
+    background: var(--secondary-brown);
+    border-radius: 999px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fd-message {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+}
+
+.fd-bold {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--dark-brown);
+}
+
+/* Checkout Quantity Controls */
+.checkout-qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: #f3f4f6;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+}
+
+.checkout-qty-btn {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.35rem;
+    font-size: 1rem;
+    color: var(--dark-brown);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.checkout-qty-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.checkout-qty-val {
+    min-width: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--dark-brown);
+}
+
+/* Sidebar Cart Interactions */
+.sidebar-qty-btn {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid #e5e7eb;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: bold;
+    color: var(--dark-brown);
+}
+
+.sidebar-qty-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* Proceed to Checkout Button Animation */
+.preview-btn {
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.2s;
+}
+
+.preview-btn:hover {
+    transform: scale(1.03) translateY(-2px);
+    box-shadow: 0 5px 15px rgba(192, 124, 92, 0.3);
 }

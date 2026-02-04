@@ -351,9 +351,9 @@ function updateCartUI() {
                       <div class="cart-item-title">${item.title}</div>
                        <div class="cart-controls">
                             <div style="display:flex; align-items:center; gap:0.5rem;">
-                                <button class="qty-btn" onclick="updateQty('${item.id}', -1)">-</button>
+                                <button class="qty-btn sidebar-qty-btn" onclick="updateQty('${item.id}', -1)">-</button>
                                 <span>${item.quantity}</span>
-                                <button class="qty-btn" onclick="updateQty('${item.id}', 1)">+</button>
+                                <button class="qty-btn sidebar-qty-btn" onclick="updateQty('${item.id}', 1)">+</button>
                             </div>
                             <div style="font-weight:bold;">${item.price * item.quantity} ₴</div>
                        </div>
@@ -366,6 +366,7 @@ function updateCartUI() {
     }
 
     // Checkout
+    // Checkout
     if (!views.checkout.classList.contains('hidden')) {
         cartComponents.itemsCheckout.innerHTML = cart.map(item => `
                <div class="summary-item">
@@ -373,12 +374,48 @@ function updateCartUI() {
                    <div class="summary-details">
                        <div class="summary-title">${item.title}</div>
                        <div class="summary-meta">
-                           <span>${item.quantity} шт.</span>
+                           <div class="checkout-qty-controls">
+                               <button class="checkout-qty-btn" onclick="updateQty('${item.id}', -1)">-</button>
+                               <span class="checkout-qty-val">${item.quantity}</span>
+                               <button class="checkout-qty-btn" onclick="updateQty('${item.id}', 1)">+</button>
+                           </div>
                            <span class="summary-price">${item.price * item.quantity} ₴</span>
                        </div>
                    </div>
                </div>
            `).join('');
+
+        // --- Free Delivery Logic ---
+        const FREE_DELIVERY_GOAL = 2000;
+        const progressWidget = document.getElementById('free-delivery-widget');
+
+        if (progressWidget) {
+            progressWidget.classList.remove('hidden');
+            const percent = Math.min((totalPrice / FREE_DELIVERY_GOAL) * 100, 100);
+
+            document.getElementById('fd-progress').style.width = `${percent}%`;
+            document.getElementById('fd-current').textContent = totalPrice;
+
+            const msgEl = document.getElementById('fd-message');
+            if (totalPrice >= FREE_DELIVERY_GOAL) {
+                msgEl.innerHTML = '<span class="fd-bold" style="color:var(--primary)">У вас безкоштовна доставка!</span>';
+                const freeText = document.querySelector('.free-text');
+                if (freeText) {
+                    freeText.textContent = "Безкоштовно";
+                    freeText.style.color = "#337a33";
+                    freeText.style.fontWeight = "bold";
+                }
+            } else {
+                const diff = FREE_DELIVERY_GOAL - totalPrice;
+                msgEl.innerHTML = `Додайте ще <span id="fd-remaining" class="fd-bold">${diff} ₴</span> для безкоштовної доставки`;
+                const freeText = document.querySelector('.free-text');
+                if (freeText) {
+                    freeText.textContent = "За тарифами перевізника";
+                    freeText.style.color = "inherit";
+                    freeText.style.fontWeight = "normal";
+                }
+            }
+        }
 
         const subtotalEl = document.getElementById('checkout-subtotal');
         if (subtotalEl) subtotalEl.textContent = totalPrice + ' ₴';
@@ -396,9 +433,13 @@ function updateCartUI() {
                     <img src="${item.image}" class="preview-img">
                     <div class="preview-info">
                         <div class="preview-title">${item.title}</div>
-                        <div class="preview-details">
-                            <span class="preview-qty">${item.quantity} шт. × ${item.price} ₴</span>
-                            <span class="preview-price">${item.quantity * item.price} ₴</span>
+                        <div class="preview-details" style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem;">
+                            <div class="sidebar-qty-controls" style="display: flex; align-items: center; gap: 0.5rem;">
+                                <button class="sidebar-qty-btn" onclick="updateQty('${item.id}', -1)">-</button>
+                                <span style="font-weight: 600; min-width: 1rem; text-align: center;">${item.quantity}</span>
+                                <button class="sidebar-qty-btn" onclick="updateQty('${item.id}', 1)">+</button>
+                            </div>
+                            <span class="preview-price" style="font-weight: bold;">${item.quantity * item.price} ₴</span>
                         </div>
                     </div>
                 </div>
@@ -487,28 +528,28 @@ window.handleAuthSubmit = function (e, type) {
 document.addEventListener('DOMContentLoaded', init);
 
 /* --- Checkout Redesign Logic --- */
-window.toggleDeliveryInputs = function(method) {
+window.toggleDeliveryInputs = function (method) {
     // Hide all groups
     document.querySelectorAll('.delivery-inputs-group').forEach(el => el.classList.add('hidden'));
-    
+
     // Show selected
     const target = document.getElementById('delivery-' + method);
-    if(target) target.classList.remove('hidden');
+    if (target) target.classList.remove('hidden');
 
     // Update active state visual
     document.querySelectorAll('input[name="delivery"]').forEach(input => {
         const card = input.closest('.method-card');
-        if(input.checked) card.classList.add('active');
+        if (input.checked) card.classList.add('active');
         else card.classList.remove('active');
     });
 }
 
 // Payment method active state listener
 document.addEventListener('change', (e) => {
-    if(e.target.name === 'payment') {
+    if (e.target.name === 'payment') {
         document.querySelectorAll('input[name="payment"]').forEach(input => {
             const row = input.closest('.payment-method-row');
-            if(input.checked) {
+            if (input.checked) {
                 row.style.borderColor = 'var(--primary)';
                 row.style.background = '#fffcf9';
             } else {

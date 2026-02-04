@@ -383,7 +383,10 @@
             <!-- Checkout View -->
             <div id="checkout-view" class="checkout-view hidden">
                 <div class="container checkout-container">
-                    <div class="checkout-header-actions">
+                    <div class="checkout-header-actions"
+                        style="display: flex; align-items: center; justify-content: space-between;">
+                        <h1 class="checkout-title" style="font-size: 2rem; font-weight: 800; color: var(--dark-brown);">
+                            Оформлення замовлення</h1>
                         <button onclick="navigateTo('home')" class="back-link">
                             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -569,6 +572,30 @@
                             <div class="order-summary-card">
                                 <h3>Ваше замовлення</h3>
 
+                                <!-- Free Delivery Progress -->
+                                <div id="free-delivery-widget" class="free-delivery-widget hidden">
+                                    <div class="fd-header">
+                                        <div class="fd-title">
+                                            <svg width="16" height="16" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                                            </svg>
+                                            БЕЗКОШТОВНА ДОСТАВКА
+                                        </div>
+                                        <div class="fd-values">
+                                            <span id="fd-current">0</span> / 2000 ₴
+                                        </div>
+                                    </div>
+                                    <div class="fd-bar-container">
+                                        <div id="fd-progress" class="fd-progress" style="width: 0%"></div>
+                                    </div>
+                                    <div id="fd-message" class="fd-message">
+                                        Додайте ще <span id="fd-remaining" class="fd-bold">2000 ₴</span> для
+                                        безкоштовної доставки
+                                    </div>
+                                </div>
+
                                 <div id="checkout-cart-items" class="summary-items-list">
                                     <!-- Items injected by JS -->
                                 </div>
@@ -580,7 +607,7 @@
                                     </div>
                                     <div class="summary-row">
                                         <span>Доставка:</span>
-                                        <span class="free-text">Безкоштовно</span>
+                                        <span class="free-text">За тарифами перевізника</span>
                                     </div>
                                     <div class="summary-row total">
                                         <span>РАЗОМ</span>
