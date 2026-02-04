@@ -380,32 +380,222 @@
             </div>
 
             <!-- Checkout View (Hidden by default) -->
+            <!-- Checkout View -->
             <div id="checkout-view" class="checkout-view hidden">
-                <div class="container" style="padding: 2rem 1rem;">
-                    <button onclick="navigateTo('home')" class="back-link" style="margin-bottom: 2rem;">← Повернутись до
-                        магазину</button>
-                    <h1 style="margin-bottom: 2rem;">Оформлення замовлення</h1>
+                <div class="container checkout-container">
+                    <div class="checkout-header-actions">
+                        <button onclick="navigateTo('home')" class="back-link">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                            Повернутись до покупок
+                        </button>
+                    </div>
 
-                    <div class="checkout-layout" style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
-                        <!-- Simple checkout simulation for pure CSS/JS -->
-                        <div class="checkout-form-box"
-                            style="background: white; padding: 2rem; border-radius: 1rem; border: 1px solid #eee;">
-                            <h2 style="margin-bottom: 1rem;">Контактні дані</h2>
-                            <input type="text" placeholder="Ваше ім'я"
-                                style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 0.5rem;">
-                            <input type="tel" placeholder="Телефон"
-                                style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 0.5rem;">
-                            <button onclick="alert('Замовлення успішне!')"
-                                style="width: 100%; background: var(--secondary-brown); color: white; padding: 1rem; font-weight: bold; border-radius: 0.5rem;">Підтвердити
-                                замовлення</button>
+                    <div class="checkout-grid">
+                        <!-- Left Column: Steps -->
+                        <div class="checkout-steps">
+                            <!-- Step 1: Contacts -->
+                            <div class="checkout-step">
+                                <div class="step-header">
+                                    <div class="step-number">1</div>
+                                    <h2 class="step-title">Контактні дані</h2>
+                                </div>
+                                <div class="step-content">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Ваше ім'я</label>
+                                            <input type="text" class="checkout-input" placeholder="Іван" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Ваше прізвище</label>
+                                            <input type="text" class="checkout-input" placeholder="Петренко" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Номер телефону</label>
+                                        <input type="tel" class="checkout-input" placeholder="+38 (___) ___ __ __"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Delivery -->
+                            <div class="checkout-step">
+                                <div class="step-header">
+                                    <div class="step-number">2</div>
+                                    <h2 class="step-title">Спосіб доставки</h2>
+                                </div>
+                                <div class="step-content">
+                                    <div class="delivery-methods">
+                                        <!-- Nova Poshta -->
+                                        <label class="method-card active">
+                                            <input type="radio" name="delivery" value="nova" checked
+                                                onchange="toggleDeliveryInputs('nova')">
+                                            <div class="method-icon">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="1.5"
+                                                        d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                                                </svg>
+                                            </div>
+                                            <div class="method-info">
+                                                <span class="method-name">Нова Пошта</span>
+                                            </div>
+                                        </label>
+                                        <!-- Courier -->
+                                        <label class="method-card">
+                                            <input type="radio" name="delivery" value="courier"
+                                                onchange="toggleDeliveryInputs('courier')">
+                                            <div class="method-icon">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                                </svg>
+                                            </div>
+                                            <div class="method-info">
+                                                <span class="method-name">Кур'єр</span>
+                                            </div>
+                                        </label>
+                                        <!-- Pickup -->
+                                        <label class="method-card">
+                                            <input type="radio" name="delivery" value="pickup"
+                                                onchange="toggleDeliveryInputs('pickup')">
+                                            <div class="method-icon">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="1.5"
+                                                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                                </svg>
+                                            </div>
+                                            <div class="method-info">
+                                                <span class="method-name">Самовивіз</span>
+                                            </div>
+                                        </label>
+                                    </div>
+
+                                    <!-- Delivery Details Sections (Toggled by JS) -->
+                                    <div id="delivery-nova" class="delivery-inputs-group">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Місто</label>
+                                                <select class="checkout-select">
+                                                    <option>Київ</option>
+                                                    <option>Львів</option>
+                                                    <option>Одеса</option>
+                                                    <option>Харків</option>
+                                                    <option>Дніпро</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Відділення</label>
+                                                <select class="checkout-select">
+                                                    <option>Відділення №1</option>
+                                                    <option>Відділення №2</option>
+                                                    <option>Відділення №3</option>
+                                                    <option>Поштомат №5012</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="delivery-courier" class="delivery-inputs-group hidden">
+                                        <div class="form-group">
+                                            <label>Адреса доставки</label>
+                                            <input type="text" class="checkout-input"
+                                                placeholder="вул. Хрещатик, 1, кв. 10">
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Під'їзд</label>
+                                                <input type="text" class="checkout-input">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Поверх</label>
+                                                <input type="text" class="checkout-input">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="delivery-pickup" class="delivery-inputs-group hidden">
+                                        <div class="pickup-info">
+                                            <p><strong>Адреса магазину:</strong> м. Київ, вул. Шоколадна 15</p>
+                                            <p>Графік роботи: Пн-Нд 10:00 - 20:00</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Payment -->
+                            <div class="checkout-step">
+                                <div class="step-header">
+                                    <div class="step-number">3</div>
+                                    <h2 class="step-title">Спосіб оплати</h2>
+                                </div>
+                                <div class="step-content">
+                                    <div class="payment-methods-list">
+                                        <label class="payment-method-row">
+                                            <input type="radio" name="payment" value="card" checked>
+                                            <span class="radio-custom"></span>
+                                            <span class="payment-label">Оплата карткою (WayForPay / LiqPay)</span>
+                                            <div class="payment-icons">
+                                                <span class="card-icon visa">VISA</span>
+                                                <span class="card-icon master">MasterCard</span>
+                                            </div>
+                                        </label>
+                                        <label class="payment-method-row">
+                                            <input type="radio" name="payment" value="cash">
+                                            <span class="radio-custom"></span>
+                                            <span class="payment-label">Оплата при отриманні</span>
+                                        </label>
+                                        <label class="payment-method-row">
+                                            <input type="radio" name="payment" value="apple">
+                                            <span class="radio-custom"></span>
+                                            <span class="payment-label">Apple Pay / Google Pay</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Коментар до замовлення (необов'язково)</label>
+                                <textarea class="checkout-textarea" placeholder="Наприклад: код домофону..."></textarea>
+                            </div>
                         </div>
 
-                        <div class="bg-white rounded-2xl p-6 border border-gray-100">
-                            <h3>Ваше замовлення</h3>
-                            <div id="checkout-cart-items" style="margin: 1rem 0;"></div>
-                            <div class="flex justify-between font-bold text-xl">
-                                <span>Разом:</span>
-                                <span id="checkout-total">0 ₴</span>
+                        <!-- Right Column: Order Summary -->
+                        <div class="checkout-summary-col">
+                            <div class="order-summary-card">
+                                <h3>Ваше замовлення</h3>
+
+                                <div id="checkout-cart-items" class="summary-items-list">
+                                    <!-- Items injected by JS -->
+                                </div>
+
+                                <div class="summary-totals">
+                                    <div class="summary-row">
+                                        <span>Сума:</span>
+                                        <span id="checkout-subtotal">0 ₴</span>
+                                    </div>
+                                    <div class="summary-row">
+                                        <span>Доставка:</span>
+                                        <span class="free-text">Безкоштовно</span>
+                                    </div>
+                                    <div class="summary-row total">
+                                        <span>РАЗОМ</span>
+                                        <span id="checkout-total">0 ₴</span>
+                                    </div>
+                                </div>
+
+                                <button onclick="alert('Замовлення успішно оформлено!')" class="submit-order-btn">
+                                    ПІДТВЕРДИТИ ЗАМОВЛЕННЯ
+                                </button>
+
+                                <div class="summary-benefits">
+                                    <span>⚡ Швидка доставка</span>
+                                    <span>🛡️ Гарантія якості</span>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -368,17 +368,21 @@ function updateCartUI() {
     // Checkout
     if (!views.checkout.classList.contains('hidden')) {
         cartComponents.itemsCheckout.innerHTML = cart.map(item => `
-               <div style="display: flex; gap: 1rem; margin-bottom: 1rem; align-items: center;">
-                  <img src="${item.image}" style="width: 4rem; height: 4rem; border-radius: 0.5rem; object-fit: cover;">
-                  <div style="flex-grow: 1;">
-                      <div style="font-weight: bold; font-size: 0.9rem;">${item.title}</div>
-                      <div style="display: flex; justify-content: space-between; margin-top: 0.25rem;">
-                          <span style="color: #666; font-size: 0.8rem;">${item.quantity} шт.</span>
-                          <span style="font-weight: bold;">${item.price * item.quantity} ₴</span>
-                      </div>
-                  </div>
+               <div class="summary-item">
+                   <img src="${item.image}" alt="${item.title}" class="summary-img">
+                   <div class="summary-details">
+                       <div class="summary-title">${item.title}</div>
+                       <div class="summary-meta">
+                           <span>${item.quantity} шт.</span>
+                           <span class="summary-price">${item.price * item.quantity} ₴</span>
+                       </div>
+                   </div>
                </div>
            `).join('');
+
+        const subtotalEl = document.getElementById('checkout-subtotal');
+        if (subtotalEl) subtotalEl.textContent = totalPrice + ' ₴';
+
         cartComponents.totalCheckout.textContent = totalPrice + ' ₴';
     }
 
@@ -481,3 +485,36 @@ window.handleAuthSubmit = function (e, type) {
 }
 
 document.addEventListener('DOMContentLoaded', init);
+
+/* --- Checkout Redesign Logic --- */
+window.toggleDeliveryInputs = function(method) {
+    // Hide all groups
+    document.querySelectorAll('.delivery-inputs-group').forEach(el => el.classList.add('hidden'));
+    
+    // Show selected
+    const target = document.getElementById('delivery-' + method);
+    if(target) target.classList.remove('hidden');
+
+    // Update active state visual
+    document.querySelectorAll('input[name="delivery"]').forEach(input => {
+        const card = input.closest('.method-card');
+        if(input.checked) card.classList.add('active');
+        else card.classList.remove('active');
+    });
+}
+
+// Payment method active state listener
+document.addEventListener('change', (e) => {
+    if(e.target.name === 'payment') {
+        document.querySelectorAll('input[name="payment"]').forEach(input => {
+            const row = input.closest('.payment-method-row');
+            if(input.checked) {
+                row.style.borderColor = 'var(--primary)';
+                row.style.background = '#fffcf9';
+            } else {
+                row.style.borderColor = '#e5e7eb';
+                row.style.background = 'white';
+            }
+        });
+    }
+});
