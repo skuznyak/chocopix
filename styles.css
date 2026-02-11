@@ -607,7 +607,228 @@ button {
 /* Category Filters removed */
 
 /* Responsive */
-@media (max-width: 900px) {}
+@media (max-width: 900px) {
+    :root {
+        --container-width: 100%;
+        --header-height: 70px;
+    }
+
+    .container {
+        padding: 0 1.25rem;
+    }
+
+    /* Header */
+    .top-bar {
+        display: none;
+        /* Hide top bar on mobile to save space */
+    }
+
+    .main-header-content {
+        padding: 0.75rem 1rem;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        color: var(--dark-brown);
+    }
+
+    .desktop-nav {
+        display: none;
+    }
+
+    .header-actions {
+        gap: 0.75rem;
+    }
+
+    .callback-btn {
+        display: none;
+        /* Hide callback button on mobile header, move to menu if needed */
+    }
+
+    .social-links {
+        display: none;
+        /* Hide social links on mobile header */
+    }
+
+    .logo-symbol {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .logo-main {
+        font-size: 1.25rem;
+    }
+
+    .logo-accent {
+        font-size: 0.6rem;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+        padding-top: var(--header-height);
+    }
+
+    /* Promo Section */
+    .promo-section {
+        margin-top: 1rem;
+    }
+
+    .promo-banner {
+        flex-direction: column-reverse;
+        /* Image on top? No, usually image between title and text or top. But here we have text-left image-right. Let's stack image on top or bottom. */
+        /* Let's try image on top for visual impact, or keep it bottom? */
+        /* Let's stack normally: Text first, then Image? Or Image then Text?
+           Design-wise, a hero image often comes first on mobile. 
+           But let's look at the structure: .promo-content, .promo-image-container.
+           If we want image on top: flex-direction: column-reverse;
+           If we want text on top: flex-direction: column;
+        */
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 2rem;
+        padding: 2rem 1.5rem;
+        text-align: center;
+    }
+
+    .promo-content {
+        align-items: center;
+    }
+
+    .promo-title {
+        font-size: 2rem;
+    }
+
+    .image-wrapper {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    /* Categories */
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 cols for mobile is often good for category tiles */
+        gap: 1rem;
+    }
+
+    .category-card {
+        aspect-ratio: 0.8;
+        /* Make them a bit taller/narrower or square */
+    }
+
+    .cat-card-title {
+        font-size: 1rem;
+    }
+
+    /* Products */
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 cols for products */
+        gap: 1rem;
+    }
+
+    .product-card {
+        padding: 0.75rem;
+    }
+
+    .card-title {
+        font-size: 0.9rem;
+    }
+
+    .price {
+        font-size: 1.1rem;
+    }
+
+    .add-btn {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    /* Product Details View */
+    .product-hero {
+        flex-direction: column;
+    }
+
+    .product-gallery {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .product-info {
+        width: 100%;
+    }
+
+    .product-details-title {
+        font-size: 1.75rem;
+    }
+
+    /* Checkout */
+    .checkout-container {
+        padding-top: 1rem;
+    }
+
+    .checkout-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .checkout-steps {
+        width: 100%;
+        padding-right: 0;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .checkout-summary-col {
+        width: 100%;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .delivery-methods {
+        grid-template-columns: 1fr;
+    }
+
+    /* Footer */
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .footer-col {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Cart Sidebar Mobile */
+    .cart-sidebar {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .categories-grid {
+        grid-template-columns: 1fr;
+        /* 1 col for very small screens if needed */
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+        /* 1 col for products on very small screens? Maybe, or keep 2 small ones. Let's try 1 for better focus. */
+    }
+
+    .promo-title {
+        font-size: 1.75rem;
+    }
+}
 
 /* Products */
 .products-section {
