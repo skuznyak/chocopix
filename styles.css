@@ -716,7 +716,7 @@ button {
     color: var(--text-main);
     margin-bottom: 1.5rem;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    /* -webkit-line-clamp: 2; */
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -1534,7 +1534,7 @@ button {
     font-weight: 900;
     line-height: 1;
     background: linear-gradient(135deg, var(--secondary-brown), var(--primary));
-    -webkit-background-clip: text;
+    /* -webkit-background-clip: text; */
     -webkit-text-fill-color: transparent;
     margin-bottom: 1rem;
     font-family: 'Comfortaa', cursive;
@@ -1970,15 +1970,15 @@ button {
 .product-hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    margin-bottom: 4rem;
+    gap: 3rem;
+    margin-bottom: 3rem;
 }
 
 /* Gallery */
 .product-gallery {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .main-image-wrapper {
@@ -2048,18 +2048,18 @@ button {
 }
 
 .product-details-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 800;
     color: var(--dark-brown);
     line-height: 1.2;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .product-price-row {
     display: flex;
     align-items: baseline;
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .product-price-large {
@@ -2076,7 +2076,7 @@ button {
 .product-quote {
     font-style: italic;
     color: var(--text-gray);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     font-size: 1rem;
 }
 
@@ -2122,11 +2122,11 @@ button {
 /* Specs */
 .product-specs {
     display: flex;
-    gap: 3rem;
-    margin-bottom: 2rem;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
     border-top: 1px solid #f3f4f6;
     border-bottom: 1px solid #f3f4f6;
-    padding: 1.5rem 0;
+    padding: 1rem 0;
 }
 
 .spec-item {
@@ -2162,8 +2162,8 @@ button {
 .product-actions-row {
     display: flex;
     align-items: center;
-    gap: 3rem;
-    margin-bottom: 2rem;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .quantity-control,
@@ -2242,6 +2242,10 @@ button {
 
 .add-to-cart-lg:hover {
     background: #2d1a10;
+}
+
+.add-to-cart-lg.added {
+    background: rgb(51, 122, 51);
 }
 
 .favorite-btn {

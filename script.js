@@ -133,6 +133,18 @@ window.navigateTo = function (viewName) {
 }
 
 // --- Slider Logic ---
+window.switchImage = function (thumb) {
+    // Update main image
+    const mainImg = document.querySelector('.main-image');
+    // Get high-res version of the thumbnail (replace w=100 with w=600 for example, or just use the same URL if it was already high res logic, but here we just swap src. 
+    // The current thumbs have w=100. Let's try to just use the src but maybe change the width param if present, creates a better quality image
+    let newSrc = thumb.src.replace('w=100', 'w=600');
+    mainImg.src = newSrc;
+
+    // Update active class
+    document.querySelectorAll('.gallery-thumbs .thumb').forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+}
 
 
 // --- Products & Filters ---
