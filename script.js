@@ -398,11 +398,11 @@ function updateCartUI() {
 
             const msgEl = document.getElementById('fd-message');
             if (totalPrice >= FREE_DELIVERY_GOAL) {
-                msgEl.innerHTML = '<span class="fd-bold" style="color:var(--primary)">У вас безкоштовна доставка!</span>';
+                msgEl.innerHTML = '<span class="fd-bold" style="color: #e67e22;">У вас безкоштовна доставка!</span>';
                 const freeText = document.querySelector('.free-text');
                 if (freeText) {
                     freeText.textContent = "Безкоштовно";
-                    freeText.style.color = "#337a33";
+                    freeText.style.color = "#e67e22";
                     freeText.style.fontWeight = "bold";
                 }
             } else {
